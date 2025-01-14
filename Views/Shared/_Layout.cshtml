@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - NewsPlatform</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/NewsPlatform3.styles.css" asp-append-version="true" />
+</head>
+<body onload="myAnim()">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">NewsPlatform</a>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        @if(TempData["level"] == "admin")
+                        {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Articles" asp-action="AddArticle">Add Article</a>
+                        </li>
+                        }
+                        @if(TempData["isL"] == "y")
+                        {
+                            <li class="nav-item">
+
+                                <a id="myMenu1" class="nav-link text-dark" asp-area="" asp-controller="Articles" asp-action="GetListArticle" style="pointer-events: auto">List</a>
+
+                            </li>
+                            <li class="nav-item">
+
+                                <a id="myMenu3" class="nav-link text-dark" asp-area="" asp-controller="Logout" asp-action="Index" style="pointer-events: auto">Log out</a>
+
+                            </li>
+                            <li class="nav-item">
+                                <i><a id="myMenu4" class="nav-link text-dark" style="pointer-events: none; color: darkgreen">[ Login: @TempData["login"] / Level: @TempData["level"] ]</a></i>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Login">Log in</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - NewsPlatform
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

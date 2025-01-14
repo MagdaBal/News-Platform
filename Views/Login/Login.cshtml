@@ -1,0 +1,21 @@
+﻿
+<h2>Welcome to log in/sign up</h2>
+
+
+
+@using (Html.BeginForm("Login","Login", FormMethod.Post))
+{
+    <div style="color:red;">@Html.ValidationSummary()</div>
+    <div style="color:red;">@TempData["nok"]</div>
+    <span>@Html.RadioButton("isLogin", true, true) Login </span>
+    <span>@Html.RadioButton("isLogin", false) Register </span>
+    <br/>
+    <br>
+    <div>Login </div> @Html.TextBox("Login")
+    <br />
+    <div>Password </div> @Html.Password("Passwd")
+    <br />
+    <br />
+
+    <button type="submit">Submit</button>
+}
